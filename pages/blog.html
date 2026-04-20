@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Martin Nikolov</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="../index.html" class="header-name">Martin<br>Nikolov</a>
+    <nav class="header-nav">
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-squiggle">✦</div>
+  </header>
+
+  <main class="page-wrap">
+
+    <div class="page-hero">
+      <span class="page-hero__tag">— thoughts, notes & write-ups</span>
+      <h1 class="page-hero__title">Blog</h1>
+    </div>
+
+    <section class="section">
+      <div class="blog-grid" id="post-list">
+        <p class="post-list-empty">Loading posts…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span class="js-year"></span> Martin Nikolov</p>
+    <div class="footer-links">
+      <a href="https://github.com/nikolovmartin02" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/martin-nikolov-8180a3237/" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .blog-card {
+      border: 2px solid var(--clr-ink, #111);
+      background: var(--clr-bg, #fff);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .blog-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 6px 6px 0 var(--clr-ink, #111);
+    }
+
+    .blog-card__img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid var(--clr-ink, #111);
+    }
+
+    .blog-card__img--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #aaa;
+      border-bottom: 2px solid var(--clr-ink, #111);
+      aspect-ratio: 16 / 9;
+      background: #f0f0f0;
+    }
+
+    .blog-card__body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .blog-card__date {
+      font-size: 0.75rem;
+      opacity: 0.55;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .blog-card__title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .blog-card__excerpt {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .blog-card__arrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      align-self: flex-end;
+    }
+
+    .post-list-empty {
+      opacity: 0.5;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <script src="../main.js"></script>
+  <script>
+    (async function () {
+      const listEl = document.getElementById('post-list');
+      try {
+        const res = await fetch('../blog/posts.json');
+        const posts = await res.json();
+
+        if (!posts.length) {
+          listEl.innerHTML = '<p class="post-list-empty">No posts yet. Check back soon.</p>';
+          return;
+        }
+
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        listEl.innerHTML = posts.map(post => {
+          const d = new Date(post.date);
+          const dateStr = d.toLocaleDateString('en-GB', {
+            day: 'numeric', month: 'long', year: 'numeric'
+          });
+
+          const imgHtml = post.image
+            ? `<img class="blog-card__img" src="${post.image}" alt="${post.title}" />`
+            : `<div class="blog-card__img--placeholder">✦</div>`;
+
+          const excerpt = post.excerpt
+            ? `<p class="blog-card__excerpt">${post.excerpt}</p>`
+            : '';
+
+          return `
+            <a href="../blog/post-template.html?post=${post.slug}" class="blog-card">
+              ${imgHtml}
+              <div class="blog-card__body">
+                <span class="blog-card__date">${dateStr}</span>
+                <span class="blog-card__title">${post.title}</span>
+                ${excerpt}
+                <span class="blog-card__arrow">Read more →</span>
+              </div>
+            </a>`;
+        }).join('');
+      } catch (err) {
+        listEl.innerHTML = '<p class="post-list-empty">Couldn\'t load posts. Is posts.json in place?</p>';
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>

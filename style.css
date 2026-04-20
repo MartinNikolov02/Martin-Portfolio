@@ -1,0 +1,602 @@
+/* ============================================================
+   MARTIN NIKOLOV — style.css
+   White · Fruktur · Bento grid · color on hover
+   ============================================================ */
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ---------- TOKENS ---------- */
+:root {
+  --white:  #ffffff;
+  --black:  #000000;
+  --off:    #f9f9f9;
+  --border: #d0d0d0;
+  --muted:  #000000;
+  --dark:   #1a1a1a;
+
+  --c-about:       #3cffc8;
+  --c-portfolio:   #b36fff;
+  --c-resume:      #ff3c3c;
+  --c-blog:        #f0e040;
+  --c-contact:     #3c9fff;
+  --c-fun-dog:     #ffb347;
+  --c-fun-confetti:#ff6eb4;
+  --c-fun-wargames:#3cffc8;
+  --c-willnot-a:   #f0e040;
+  --c-willnot-b:   #3cffc8;
+
+  --font-display: 'Bebas Neue', sans-serif;;
+  --font-body:    'Space Mono', monospace;
+  --gap: 4px;
+}
+
+/* ---------- BASE ---------- */
+html, body { height: 100%; }
+
+body {
+  background: var(--white);
+  color: var(--dark);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+::selection { background: var(--black); color: var(--white); }
+
+/* ============================================================
+   INDEX GRID
+
+   Desktop layout (5 rows × 4 cols):
+
+   ┌──────────┬──────────┬──────────┬──────────────┐
+   │  name    │  about   │ portfolio│   welcome    │ row 1
+   ├──────────┼──────────┼──────────┤              │
+   │          │  blog    │          │              │ row 2
+   │  photo   ├──────────┤  contact ├──────────────┤
+   │          │          │          │   🐕 dog     │ row 3
+   │          │  resume  ├──────────┤              │
+   │          │          │          ├──────────────┤
+   │          │          │          │  🎉 confetti │ row 4
+   ├──────────┼──────────┼──────────┼──────────────┤
+   │ website: │ × track  │ × get up │  💻 wargames │ row 5
+   └──────────┴──────────┴──────────┴──────────────┘
+
+   Rows: 1=name strip, 2-4=main content, 5=bottom strip
+   Col 4 = fun buttons stacked tall
+   Row 5 = "this website" horizontal strip
+   ============================================================ */
+
+.index-body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.index-grid {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  gap: var(--gap);
+  padding: var(--gap);
+  background: var(--border);
+
+  grid-template-columns: 0.85fr 1.1fr 1.1fr 0.9fr;
+  grid-template-rows:
+    0.38fr   /* row 1 — name / top strip */
+    0.9fr    /* row 2 — main content A */
+    0.9fr    /* row 3 — main content B */
+    0.9fr    /* row 4 — main content C */
+    0.36fr;  /* row 5 — "this website" bottom strip */
+}
+
+/* ============================================================
+   TILE BASE
+   ============================================================ */
+
+.tile {
+  background: var(--off);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.28s ease;
+}
+
+a.tile, button.tile { cursor: pointer; }
+
+.tile img {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+.tile__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 2.8rem);
+  color: var(--dark);
+  text-align: center;
+  letter-spacing: 0.01em;
+  transition: color 0.28s ease, transform 0.28s ease;
+}
+
+a.tile:hover .tile__label,
+button.tile:hover .tile__label {
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   COL 1
+   ============================================================ */
+
+/* Name — col 1, row 1 */
+.tile--name {
+  grid-column: 1;
+  grid-row: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px 14px;
+  background: var(--white);
+  cursor: default;
+}
+
+.name-line {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.7vw, 1.8rem);
+  line-height: 1.1;
+  color: var(--dark);
+}
+
+/* Photo — col 1, rows 2-4 */
+.tile--photo {
+  grid-column: 1;
+  grid-row: 2 / 5;
+  background: var(--white);
+  padding: 8px;
+}
+
+.tile--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.tile--label {
+  grid-column: 1;
+  grid-row: 5;
+  background: var(--black);        /* only this one is black */
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.tile--label .label-text {
+  color: var(--white);             /* contrast text */
+  font-size: clamp(0.8rem, 1.5vw, 1rem);  /* optional scaling */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.tile--photo:hover { background: #ffffff; }
+.tile--photo:hover img { filter: grayscale(0%); }
+
+/* "This website:" label — col 1, row 5 */
+.tile__label {
+  font-family: var(--font-display);
+  font-size: 8vh;          /* relative to tile height */
+  max-height: 90%;         /* prevent overflow */
+  text-align: center;
+  line-height: 1.1;
+  color: var(--dark);
+  letter-spacing: 0.01em;
+  transition: color 0.28s ease, transform 0.28s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--border);
+}
+
+/* ============================================================
+   COL 2
+   ============================================================ */
+
+/* About — col 2, row 1 */
+.tile--about     { grid-column: 2; grid-row: 1; }
+
+/* Blog — col 2, row 2 */
+.tile--blog      { grid-column: 2; grid-row: 2; }
+
+/* Resume — col 2, rows 3-4 */
+.tile--resume    { grid-column: 2; grid-row: 3 / 5; }
+
+/* Will not A — col 2, row 5 */
+.tile--willnot-a { grid-column: 2; grid-row: 5; }
+
+/* ============================================================
+   COL 3
+   ============================================================ */
+
+/* Portfolio — col 3, rows 1-2 */
+.tile--portfolio { grid-column: 3; grid-row: 1 / 3; }
+
+/* Contact — col 3, rows 3-4 */
+.tile--contact   { grid-column: 3; grid-row: 3 / 5; }
+
+/* Will not B — col 3, row 5 */
+.tile--willnot-b { grid-column: 3; grid-row: 5; }
+
+/* ============================================================
+   COL 4 — fun buttons, stacked tall
+   ============================================================ */
+
+/* Welcome — col 4, rows 1-2 */
+.tile--welcome {
+  grid-column: 4;
+  grid-row: 1 / 3;
+  flex-direction: column;
+  padding: 18px 16px;
+  cursor: default;
+  background: var(--white);
+  text-align: center;
+}
+
+.welcome-text {
+  font-family: var(--font-display);
+  font-size: 3vh;   /* scales with viewport / tile size */
+  line-height: 1.2;
+  text-align: center;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dog — col 4, row 3 */
+.tile--fun-dog {
+  grid-column: 4;
+  grid-row: 3;
+}
+
+/* Confetti — col 4, row 4 */
+.tile--fun-confetti {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+/* Wargames — col 4, row 5 */
+.tile--fun-wargames {
+  grid-column: 4;
+  grid-row: 5;
+}
+
+/* ============================================================
+   FUN TILES shared
+   ============================================================ */
+
+.tile--fun {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  padding: 12px;
+}
+
+.fun__icon {
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.tile--fun:hover .fun__icon {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.tile--fun p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 0.9vw, 0.8rem);
+  line-height: 1.6;
+  color: var(--muted);
+  font-style: italic;
+  transition: color 0.28s;
+}
+
+/* ============================================================
+   WILL-NOT shared
+   ============================================================ */
+
+.tile--willnot {
+  flex-direction: row;
+  gap: 8px;
+  padding: 0 14px;
+  cursor: default;
+}
+
+.willnot__x {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  color: var(--border);
+  flex-shrink: 0;
+  transition: color 0.28s;
+}
+
+.willnot__text {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.1vw, 1.15rem);
+  color: var(--dark);
+  transition: color 0.28s;
+  line-height: 1.15;
+}
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.tile--about:hover        { background: var(--c-about); }
+.tile--about:hover .tile__label { color: var(--black); }
+
+.tile--portfolio:hover    { background: var(--c-portfolio); }
+.tile--portfolio:hover .tile__label { color: var(--white); }
+
+.tile--resume:hover       { background: var(--c-resume); }
+.tile--resume:hover .tile__label { color: var(--white); }
+
+.tile--blog:hover         { background: var(--c-blog); }
+.tile--blog:hover .tile__label { color: var(--black); }
+
+.tile--contact:hover      { background: var(--c-contact); }
+.tile--contact:hover .tile__label { color: var(--white); }
+
+.tile--fun-dog:hover      { background: var(--c-fun-dog); }
+.tile--fun-dog:hover p    { color: var(--black); }
+
+.tile--fun-confetti:hover { background: var(--c-fun-confetti); }
+.tile--fun-confetti:hover p { color: var(--white); }
+
+.tile--fun-wargames:hover { background: var(--c-fun-wargames); }
+.tile--fun-wargames:hover p { color: var(--black); }
+
+.tile--willnot-a:hover { background: var(--c-willnot-a); }
+.tile--willnot-a:hover .willnot__x,
+.tile--willnot-a:hover .willnot__text { color: var(--black); }
+
+.tile--willnot-b:hover { background: var(--c-willnot-b); }
+.tile--willnot-b:hover .willnot__x,
+.tile--willnot-b:hover .willnot__text { color: var(--black); }
+
+/* ============================================================
+   WALKING DOG
+   ============================================================ */
+
+.walking-dog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 2.8rem;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+.walking-dog img {
+  width: 120px;   /* adjust size here */
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   CONFETTI CANVAS
+   ============================================================ */
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ============================================================
+   INNER PAGES — header + footer
+   ============================================================ */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(14px, 2.5vw, 28px) clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+  background: var(--white);
+}
+
+.header-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
+  line-height: 0.95;
+  color: var(--dark);
+  letter-spacing: 0.01em;
+}
+
+.header-nav {
+  display: flex;
+  gap: clamp(16px, 2.5vw, 36px);
+  flex-wrap: wrap;
+}
+
+.header-nav a {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.header-squiggle {
+  font-size: 1.3rem;
+  color: var(--border);
+  animation: spin 10s linear infinite;
+  user-select: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: clamp(14px, 2vw, 24px) clamp(16px, 4vw, 48px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--white);
+}
+
+.site-footer p { font-size: 0.68rem; color: var(--muted); }
+
+.footer-links { display: flex; gap: 24px; }
+
+.footer-links a {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.footer-links a:hover { color: var(--dark); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 960px) {
+  .index-body { height: auto; overflow: auto; }
+
+  .index-grid {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .tile--name      { grid-column: 1;     grid-row: auto; min-height: 70px; }
+  .tile--photo     { grid-column: 1 / 3; grid-row: auto; min-height: 280px; }
+  .tile--about     { grid-column: 1;     grid-row: auto; min-height: 110px; }
+  .tile--blog      { grid-column: 2;     grid-row: auto; min-height: 110px; }
+  .tile--resume    { grid-column: 1;     grid-row: auto; min-height: 110px; }
+  .tile--portfolio { grid-column: 2;     grid-row: auto; min-height: 110px; }
+  .tile--contact   { grid-column: 1 / 3; grid-row: auto; min-height: 100px; }
+  .tile--welcome   { grid-column: 1 / 3; grid-row: auto; min-height: 90px; }
+  .tile--fun-dog   { grid-column: 1;     grid-row: auto; min-height: 110px; }
+  .tile--fun-confetti { grid-column: 2;  grid-row: auto; min-height: 110px; }
+  .tile--fun-wargames { grid-column: 1;  grid-row: auto; min-height: 90px; }
+  .tile--label     { grid-column: 2;     grid-row: auto; min-height: 50px; }
+  .tile--willnot-a { grid-column: 1;     grid-row: auto; min-height: 55px; }
+  .tile--willnot-b { grid-column: 2;     grid-row: auto; min-height: 55px; }
+}
+
+@media (max-width: 560px) {
+  .index-grid { grid-template-columns: 1fr; }
+
+  .tile--name, .tile--photo, .tile--about, .tile--blog,
+  .tile--resume, .tile--portfolio, .tile--contact,
+  .tile--welcome, .tile--fun-dog, .tile--fun-confetti,
+  .tile--fun-wargames, .tile--label,
+  .tile--willnot-a, .tile--willnot-b { grid-column: 1; }
+
+  .tile__label { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+  .header-squiggle { display: none; }
+}
+
+
+
+
+
+
+
+
+
+/* ================= MOBILE-FRIENDLY CUSTOM ORDER ================= */
+
+@media (max-width: 960px) {
+  .index-body { height: auto; overflow: auto; }
+
+  .index-grid {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: var(--gap);
+    padding: var(--gap);
+  }
+
+  /* NEW STACK ORDER */
+  .tile--name          { grid-column: 1; grid-row: 1; min-height: 70px; }   /* Martin Nikolov square */
+  .tile--photo         { grid-column: 1; grid-row: 2; min-height: 280px; }  /* The image */
+  .tile--about         { grid-column: 1; grid-row: 3; min-height: 110px; }  /* About me */
+  .tile--portfolio     { grid-column: 1; grid-row: 4; min-height: 110px; }  /* Portfolio */
+  .tile--blog          { grid-column: 1; grid-row: 5; min-height: 110px; }  /* Blog */
+  .tile--resume        { grid-column: 1; grid-row: 6; min-height: 110px; }  /* Resume */
+  .tile--contact       { grid-column: 1; grid-row: 7; min-height: 100px; }  /* Contact */
+
+  .tile--label         { grid-column: 1; grid-row: 8; min-height: 50px; }   /* Quote */
+
+  .tile--fun-dog       { grid-column: 1; grid-row: 9; min-height: 110px; }  /* Dog */
+  .tile--fun-confetti  { grid-column: 1; grid-row: 10; min-height: 110px; } /* Celebrate */
+  .tile--fun-wargames  { grid-column: 1; grid-row: 11; min-height: 90px; }  /* Play wargames */
+
+  /* push "this website:" lower */
+  .tile--willnot-a     { grid-column: 1; grid-row: 14; min-height: 55px; }  /* This website: */
+  .tile--willnot-b     { grid-column: 1; grid-row: 15; min-height: 55px; }  /* Track / other square */
+}
+
+@media (max-width: 560px) {
+  .tile--name, .tile--photo, .tile--about, .tile--portfolio, 
+  .tile--blog, .tile--resume, .tile--contact,
+  .tile--label, .tile--fun-dog, .tile--fun-confetti, .tile--fun-wargames,
+  .tile--willnot-a, .tile--willnot-b {
+    grid-column: 1;
+    height: auto !important;
+    padding: 8px;
+  }
+
+  .tile__label { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+  .tile--fun p { font-size: clamp(1rem, 4vw, 1.2rem); }
+  .label-text { font-size: clamp(0.6rem, 2.5vw, 0.7rem); }
+  .willnot__text, .willnot__x { font-size: clamp(0.6rem, 3vw, 0.9rem); }
+  .header-squiggle { display: none; }
+}
+
+@media (max-width: 360px) {
+  .walking-dog, #confettiCanvas { display: none; }
+}
+
+body, .index-grid { overflow-x: hidden; }

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Blog — Martin Nikolov</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* ── Post layout ── */
+    .post-wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    /* ── Back link ── */
+    .post-back {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      text-decoration: none;
+      color: inherit;
+      border: 2px solid var(--clr-ink, #111);
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 3rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .post-back:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 4px 4px 0 var(--clr-ink, #111);
+    }
+
+    /* ── Post header ── */
+    .post-header {
+      border-top: 4px solid var(--clr-ink, #111);
+      padding-top: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .post-header__meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      opacity: 0.5;
+      margin: 0;
+    }
+
+    .post-header__divider {
+      flex: 1;
+      height: 1px;
+      background: var(--clr-ink, #111);
+      opacity: 0.2;
+    }
+
+    .post-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      margin: 0 0 1.25rem;
+    }
+
+    /* Optional hero image */
+    .post-hero-img {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--clr-ink, #111);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Post body typography ── */
+    .post-body {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.9;
+    }
+
+    .post-body p {
+      margin: 0 0 1.4em;
+    }
+
+    .post-body h1,
+    .post-body h2,
+    .post-body h3,
+    .post-body h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.02em;
+      margin: 2.5em 0 0.6em;
+      line-height: 1;
+    }
+
+    .post-body h2 { font-size: 2.2rem; }
+    .post-body h3 { font-size: 1.6rem; }
+    .post-body h4 { font-size: 1.2rem; }
+
+    .post-body a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .post-body strong {
+      font-weight: 700;
+    }
+
+    .post-body em {
+      font-style: italic;
+    }
+
+    .post-body ul,
+    .post-body ol {
+      padding-left: 1.4rem;
+      margin: 0 0 1.4em;
+    }
+
+    .post-body li {
+      margin-bottom: 0.4em;
+    }
+
+    /* Blockquote — accent pull-quote style */
+    .post-body blockquote {
+      margin: 2em 0;
+      padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--clr-ink, #111);
+      background: #f5f5f5;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    /* Code inline */
+    .post-body code {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82em;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 0.1em 0.35em;
+    }
+
+    /* Code block */
+    .post-body pre {
+      background: var(--clr-ink, #111);
+      color: #f0f0f0;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 0 0 1.4em;
+      border: 2px solid var(--clr-ink, #111);
+    }
+
+    .post-body pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.82em;
+      color: inherit;
+    }
+
+    .post-body img {
+      max-width: 100%;
+      border: 2px solid var(--clr-ink, #111);
+      display: block;
+      margin: 1.5em 0;
+    }
+
+    .post-body hr {
+      border: none;
+      border-top: 2px solid var(--clr-ink, #111);
+      margin: 2.5em 0;
+      opacity: 0.2;
+    }
+
+    /* ── Footer rule before footer ── */
+    .post-footer-rule {
+      border: none;
+      border-top: 4px solid var(--clr-ink, #111);
+      margin: 3rem 0 0;
+    }
+
+    /* ── Loading / error states ── */
+    .post-loading,
+    .post-error {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="../index.html" class="header-name">Martin<br>Nikolov</a>
+    <nav class="header-nav">
+      <a href="../pages/about.html">About</a>
+      <a href="../pages/portfolio.html">Portfolio</a>
+      <a href="../pages/blog.html" class="active">Blog</a>
+      <a href="../pages/contact.html">Contact</a>
+    </nav>
+    <div class="header-squiggle">✦</div>
+  </header>
+
+  <main class="post-wrap">
+
+    <a href="../pages/blog.html" class="post-back">← All posts</a>
+
+    <div class="post-header">
+      <div class="post-header__meta">
+        <p class="post-date" id="post-date">—</p>
+        <div class="post-header__divider"></div>
+      </div>
+      <h1 class="post-title" id="post-title">Loading…</h1>
+    </div>
+
+    <img class="post-hero-img" id="post-hero-img" src="" alt="" style="display:none;" />
+
+    <article class="post-body" id="post-body">
+      <p class="post-loading">Fetching post…</p>
+    </article>
+
+    <hr class="post-footer-rule" />
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span class="js-year"></span> Martin Nikolov</p>
+    <div class="footer-links">
+      <a href="https://github.com/nikolovmartin02" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/martin-nikolov-8180a3237/" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script src="blog-loader.js"></script>
+</body>
+</html>

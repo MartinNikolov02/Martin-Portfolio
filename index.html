@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Martin Nikolov</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body class="index-body">
+
+  <main class="index-grid">
+
+    <!-- ── COL 1 ─────────────────────────────── -->
+
+    <!-- Name — col 1, row 1 -->
+    <div class="tile tile--name">
+      <span class="name-line">Martin</span>
+      <span class="name-line">Nikolov</span>
+    </div>
+
+    <!-- Photo — col 1, rows 2-4 -->
+    <a href="pages/about.html" class="tile tile--photo" aria-label="About Martin">
+      <img src="assets/img/profile_image.webp" alt="Hand-drawn portrait of Martin Nikolov" />
+    </a>
+
+    <!-- "This website:" label — col 1, row 5 -->
+    <div class="tile tile--label">
+      <span class="label-text">This website:</span>
+    </div>
+
+    <!-- ── COL 2 ─────────────────────────────── -->
+
+    <!-- About — col 2, row 1 -->
+    <a href="pages/about.html" class="tile tile--about">
+      <span class="tile__label">About Me</span>
+    </a>
+
+    <!-- Blog — col 2, row 2 -->
+    <a href="pages/blog.html" class="tile tile--blog">
+      <span class="tile__label">Blog</span>
+    </a>
+
+    <!-- Resume — col 2, rows 3-4 -->
+    <a href="assets/resume.pdf" target="_blank" class="tile tile--resume">
+      <span class="tile__label">Résumé</span>
+    </a>
+
+    <!-- Will not: Track You — col 2, row 5 -->
+    <div class="tile tile--willnot tile--willnot-a">
+      <span class="willnot__x">×</span>
+      <span class="willnot__text">Track You</span>
+    </div>
+
+    <!-- ── COL 3 ─────────────────────────────── -->
+
+    <!-- Portfolio — col 3, rows 1-2 -->
+    <a href="pages/portfolio.html" class="tile tile--portfolio">
+      <span class="tile__label">Portfolio</span>
+    </a>
+
+    <!-- Contact — col 3, rows 3-4 -->
+    <a href="pages/contact.html" class="tile tile--contact">
+      <span class="tile__label">Contact</span>
+    </a>
+
+    <!-- Will not: Get you out of bed — col 3, row 5 -->
+    <div class="tile tile--willnot tile--willnot-b">
+      <span class="willnot__x">×</span>
+      <span class="willnot__text">Get you out of bed</span>
+    </div>
+
+    <!-- ── COL 4 — right column, all fun ─────── -->
+
+    <!-- Welcome — col 4, rows 1-2 -->
+    <div class="tile tile--welcome">
+      <p class="welcome-text">"The mystery of human existence lies not in just staying alive, but in finding something to live for."</p>
+    </div>
+
+    <!-- Dog button — col 4, rows 3-4 (big!) -->
+    <button class="tile tile--fun tile--fun-dog" onclick="toggleDog(this)" aria-label="Unleash the dog">
+      <span class="fun__icon">🐕</span>
+      <p>Unleash The Dog!!!</p>
+    </button>
+
+    <!-- Confetti button — col 4, rows 3-4 shares with dog? No — row 3 -->
+    <!-- Actually dog gets rows 3, confetti gets row 4, wargames row 5 -->
+    <button class="tile tile--fun tile--fun-confetti" onclick="popConfetti()" aria-label="Pop confetti">
+      <span class="fun__icon">🎉</span>
+      <p>Celebrate!</p>
+    </button>
+
+    <!-- Wargames — col 4, row 5 -->
+    <a href="https://wargames.batamladen.com" target="_blank" class="tile tile--fun tile--fun-wargames">
+      <span class="fun__icon">💻</span>
+      <p>Play Wargames</p>
+    </a>
+
+  </main>
+
+  <!-- Walking dog -->
+<div class="walking-dog" id="walkingDog" aria-hidden="true">
+  <img src="assets/img/beast.webp" alt="dog" />
+</div>
+
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="main.js"></script>
+</body>
+</html>

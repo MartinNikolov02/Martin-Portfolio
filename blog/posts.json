@@ -1,0 +1,21 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2026-03-28",
+    "image": "../assets/img/blog2.webp"
+  },
+  {
+    "slug": "why-i-code",
+    "title": "Why I Code",
+    "date": "2026-03-20",
+    "image": "../assets/img/blog2.webp"
+  },
+  {
+    "slug": "homelab-one",
+    "title": "My First Homelab Project",
+    "date": "2026-03-20",
+    "image": "../assets/img/blog2.webp"
+
+  }
+]
