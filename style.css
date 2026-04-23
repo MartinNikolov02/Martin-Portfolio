@@ -367,7 +367,7 @@ button.tile:hover .tile__label {
 .tile--fun-dog:hover p    { color: var(--black); }
 
 .tile--fun-confetti:hover { background: var(--c-fun-confetti); }
-.tile--fun-confetti:hover p { color: var(--white); }
+.tile--fun-confetti:hover p { color: var(--black); }
 
 .tile--fun-wargames:hover { background: var(--c-fun-wargames); }
 .tile--fun-wargames:hover p { color: var(--black); }
