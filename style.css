@@ -283,7 +283,6 @@ button.tile:hover .tile__label {
 .tile--fun-wargames {
   grid-column: 4;
   grid-row: 5;
-  padding-bottom: 18px;
 }
 
 /* ============================================================
