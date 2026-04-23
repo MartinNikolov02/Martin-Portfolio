@@ -349,7 +349,7 @@ button.tile:hover .tile__label {
    ============================================================ */
 
 .tile--about:hover        { background: var(--c-about); }
-.tile--about:hover .tile__label { color: var(--black); }
+.tile--about:hover .tile__label { color: var(--white); }
 
 .tile--portfolio:hover    { background: var(--c-portfolio); }
 .tile--portfolio:hover .tile__label { color: var(--white); }
@@ -358,7 +358,7 @@ button.tile:hover .tile__label {
 .tile--resume:hover .tile__label { color: var(--white); }
 
 .tile--blog:hover         { background: var(--c-blog); }
-.tile--blog:hover .tile__label { color: var(--black); }
+.tile--blog:hover .tile__label  { color: var(--white); }
 
 .tile--contact:hover      { background: var(--c-contact); }
 .tile--contact:hover .tile__label { color: var(--white); }
