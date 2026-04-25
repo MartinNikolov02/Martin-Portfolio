@@ -186,7 +186,7 @@ font-size: clamp(2.5rem, 6vw, 5rem);
 }
 
 .about-list li {
-  font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
   line-height: 1.6;
   color: var(--text);
 }
