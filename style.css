@@ -372,10 +372,9 @@ button.tile:hover .tile__label {
 .tile--fun-wargames:hover { background: var(--c-fun-wargames); }
 .tile--fun-wargames:hover p { color: var(--black); }
 
-.tile--willnot-a:hover { background: var(--c-willnot-a); }
+.tile--willnot-a:hover { background: var(--off); }
+.tile--willnot-b:hover { background: var(--off); }
 .tile--willnot-a:hover .willnot__text { color: var(--black); }
-
-.tile--willnot-b:hover { background: var(--c-willnot-b); }
 .tile--willnot-b:hover .willnot__text { color: var(--black); }
 
 /* ============================================================
