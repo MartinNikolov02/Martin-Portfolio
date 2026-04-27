@@ -18,7 +18,7 @@
 
   try {
     // Fetch the markdown file
-    const res = await fetch(`posts/${slug}.md`);
+    const res = await fetch(`https://raw.githubusercontent.com/MartinNikolov02/Martin-Portfolio/master/blog/posts/${slug}.md`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const raw = await res.text();
 
