@@ -3,14 +3,14 @@
     "slug": "microsoft-sentinel-homelab",
     "title": "My First Experience With Microsoft Sentinel",
     "date": "2026-03-29",
-    "excerpt": "Building a homelab and setting up Microsoft Sentinel for the first time - what I learned.",
-    "image": "../assets/img/blog2.webp"
+    "excerpt": "Building a homelab and setting up Microsoft Sentinel for the first time",
+    "image": "../assets/img/azure.png"
   },
   {
     "slug": "exercise-and-mental-health",
     "title": "Why I Think Exercise Is Important",
-    "date": "2026-04-26",
+    "date": "2026-03-03",
     "excerpt": "After a stressful day, one hour of movement changes everything - gym, running, football.",
-    "image": "../assets/img/blog2.webp"
+    "image": "../assets/img/exercise.png"
   }
 ]
