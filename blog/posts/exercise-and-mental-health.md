@@ -1,6 +1,6 @@
 ---
 title: Why I Think Exercise Is Important
-date: 2026-04-25
+date: 2026-03-25
 ---
 
 After a stressful day of work, or simply when life happens, a 1 hour workout can do more for your mental health than anything else. Doesn't matter if it's the gym, running, or sports.
