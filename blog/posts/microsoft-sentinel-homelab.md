@@ -9,7 +9,7 @@ I wanted to get hands-on experience with a real SIEM tool, so I decided to go wi
 
 ## Setting Up The Lab
 
-I deployed two virtual machines in Azure under a resource group called Nikolov_Lab - one running Windows and one running Linux. Both were placed in North Europe and configured with public IP addresses.
+After many tutorials, I deployed two virtual machines in Azure under a resource group called Nikolov_Lab, one running Windows and one running Linux. Both were placed in the same region and configured with public IP addresses.
 
 To attract attackers, I added an inbound security rule allowing all traffic on all ports. This essentially opened the machines to the internet.
 
