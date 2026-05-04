@@ -555,24 +555,22 @@ button.tile:hover .tile__label {
     padding: var(--gap);
   }
 
-  /* NEW STACK ORDER */
-  .tile--name          { grid-column: 1; grid-row: 1; min-height: 70px; }   /* Martin Nikolov square */
-  .tile--photo         { grid-column: 1; grid-row: 2; min-height: 280px; }  /* The image */
-  .tile--about         { grid-column: 1; grid-row: 3; min-height: 110px; }  /* About me */
-  .tile--portfolio     { grid-column: 1; grid-row: 4; min-height: 110px; }  /* Portfolio */
-  .tile--blog          { grid-column: 1; grid-row: 5; min-height: 110px; }  /* Blog */
-  .tile--resume        { grid-column: 1; grid-row: 6; min-height: 110px; }  /* Resume */
-  .tile--contact       { grid-column: 1; grid-row: 7; min-height: 100px; }  /* Contact */
+  .tile--name          { grid-column: 1; grid-row: 1; min-height: 70px; }
+  .tile--photo         { grid-column: 1; grid-row: 2; min-height: 280px; }
+  .tile--about         { grid-column: 1; grid-row: 3; min-height: 110px; }
+  .tile--resume        { grid-column: 1; grid-row: 4; min-height: 110px; }
+  .tile--portfolio     { grid-column: 1; grid-row: 5; min-height: 110px; }
+  .tile--blog          { grid-column: 1; grid-row: 6; min-height: 110px; }
+  .tile--contact       { grid-column: 1; grid-row: 7; min-height: 100px; }
 
-  .tile--label         { grid-column: 1; grid-row: 8; min-height: 50px; }   /* Quote */
+  .tile--label         { grid-column: 1; grid-row: 8; min-height: 50px; }
+  .tile--willnot-a     { grid-column: 1; grid-row: 9; min-height: 55px; }
+  .tile--willnot-b     { grid-column: 1; grid-row: 10; min-height: 55px; }
+  .tile--fun-wargames  { grid-column: 1; grid-row: 11; min-height: 55px; }
 
-  .tile--fun-dog       { grid-column: 1; grid-row: 9; min-height: 110px; }  /* Dog */
-  .tile--fun-confetti  { grid-column: 1; grid-row: 10; min-height: 110px; } /* Celebrate */
-  .tile--fun-wargames  { grid-column: 1; grid-row: 11; min-height: 90px; }  /* Play wargames */
-
-  /* push "this website:" lower */
-  .tile--willnot-a     { grid-column: 1; grid-row: 14; min-height: 55px; }  /* This website: */
-  .tile--willnot-b     { grid-column: 1; grid-row: 15; min-height: 55px; }  /* Track / other square */
+  .tile--welcome       { grid-column: 1; grid-row: 12; min-height: 90px; }
+  .tile--fun-dog       { grid-column: 1; grid-row: 13; min-height: 110px; }
+  .tile--fun-confetti  { grid-column: 1; grid-row: 14; min-height: 110px; }
 }
 
 @media (max-width: 560px) {
