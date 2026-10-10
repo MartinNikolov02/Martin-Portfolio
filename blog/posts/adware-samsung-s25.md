@@ -53,3 +53,7 @@ After removal I turned USB debugging back off, re-enabled Samsung Auto Blocker, 
 - Always **confirm the cause** before removing- disabling the package and watching whether the ads stop is good incident response practice.
 
 My neighbour was scared she couldn't save her phone. I was just excited to bump into this kind of problem in real life and not just in a simulation.
+
+## Scareware on the phone
+
+![Scareware warning ad on the phone screen](../assets/img/adware.jpg)
