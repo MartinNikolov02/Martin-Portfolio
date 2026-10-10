@@ -1,5 +1,5 @@
 ---
-title: Incident Report: Adware on a Samsung Galaxy S25
+title: Adware on a Samsung Galaxy S25
 date: 2026-10-10
 ---
 
@@ -37,8 +37,6 @@ adb shell pm uninstall --user 0 com.grimeaway.ohmyclear
 
 
 Problem solved.
-
-## Recovery and Hardening
 
 ## Recovery and Hardening
 
